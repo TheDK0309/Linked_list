@@ -19,10 +19,6 @@ int add_to_list(linked_list *ll, char *s){
 	temp->index = i;
 	x->next = temp;
 	return temp->index;
-	i++;
-	temp->index = i;
-	x->next = temp;
-	return temp->index;
 }
 int display_item(linked_list *ll){
 	if(ll->data==NULL){
