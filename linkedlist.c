@@ -2,23 +2,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 int add_to_list(linked_list *ll, char *s){
-	struct linked_list *list = ll;
-	struct linked_list * item = (linked_list*)malloc(sizeof(linked_list));
-	int index = 0;
-	if(temp==NULL) return -1;
-	item->data = s;
-	item->next = NULL;
+	struct linked_list *x = ll;
+	struct linked_list *temp = (linked_list*)malloc(sizeof(linked_list));
+	int i = 0;
+	if(x==NULL) return -1;
+	temp->data = s;
+	temp->next = NULL;
 
-	while(list) {
-		if (list->index > index) index = list->index;
-		if (list->next==NULL) break;
+	while(x) {
+		if (x->index > i) i = x->index;
+		if (x->next==NULL) break;
 
-		list = list->next;
+		x = x->next;
 	}
-
-	item->index = ++index;
-	list->next = item;
-	return item->index;
+	i++;
+	temp->index = i;
+	x->next = temp;
+	return temp->index;
+	i++;
+	temp->index = i;
+	x->next = temp;
+	return temp->index;
 }
 int display_item(linked_list *ll){
 	if(ll->data==NULL){
