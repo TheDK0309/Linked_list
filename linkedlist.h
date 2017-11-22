@@ -3,6 +3,7 @@ typedef struct linked_list{
 	char *data;
 	int index; 
 	struct linked_list *next;
+	
 }linked_list;
 int add_to_list(linked_list *ll, char *s);
 int display_item(linked_list *ll);

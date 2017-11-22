@@ -18,6 +18,7 @@ int add_to_list(linked_list *ll, char *s){
 	i++;
 	temp->index = i;
 	x->next = temp;
+	
 	return temp->index;
 }
 int display_item(linked_list *ll){
@@ -86,7 +87,7 @@ int empty_list(linked_list *ll)
     }
 	return display_item(ll);
 }
-void sort_list(linked_list *ll){
+/*void sort_list(linked_list *ll){
 	linked_list *temp1;                         
 	temp1 = (linked_list*)malloc(sizeof(linked_list)); 
  
@@ -107,7 +108,7 @@ void sort_list(linked_list *ll){
             }
 		}
 	}
-}
+}*/
 void swap_list(linked_list *f, linked_list *s){
 	char *temp= f->data;
 	f->data=s->data;
@@ -124,9 +125,3 @@ int linkedlist_status(linked_list *ll){
 }
 
 
-/*
-http://www.learn-c.org/en/Linked_lists
-https://www.codeproject.com/Articles/24684/How-to-create-Linked-list-using-C-C
-http://www.geeksforgeeks.org/delete-a-given-linked_list-in-linked-list-under-given-constraints/
-http://www.zentut.com/c-tutorial/c-linked-list/
-*/

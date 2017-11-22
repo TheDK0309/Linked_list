@@ -260,6 +260,91 @@ TEST(empty,normal) {
     empty_list(&head);
 	
 }
+TEST(SearchFromList,NormalTest)
+{
+  int result;
+  linked_list *pHead = (linked_list* )malloc(sizeof(linked_list));
+  linked_list *tmp;
+  pHead->next = (linked_list* )malloc(sizeof(linked_list));  
+  pHead->next->next = (linked_list* )malloc(sizeof(linked_list));
+  pHead->next->next->next = (linked_list* )malloc(sizeof(linked_list));
+  pHead->next->next->next->next = NULL;
+  
+
+  pHead->next->data = (char*)"layer 1";
+  pHead->next->next->data = (char*)"layer 2";
+  pHead->next->next->next->data = (char*)"layer 3";
+  
+  
+  tmp = search_from_list(pHead,(char*)"layer 4");
+  ASSERT_EQ(NULL,tmp);
+
+
+  tmp = search_from_list(pHead,(char*)"layer 1");
+  ASSERT_STREQ(tmp->data,pHead->next->data);
+  ASSERT_EQ(tmp->next,pHead->next->next);
+
+  tmp = search_from_list(pHead,(char*)"layer 2");
+  ASSERT_STREQ(tmp->data,pHead->next->next->data);
+  ASSERT_EQ(tmp->next,pHead->next->next->next);
+
+  tmp = search_from_list(pHead,(char*)"layer 3");
+  ASSERT_STREQ(tmp->data,pHead->next->next->next->data);
+  ASSERT_EQ(tmp->next,pHead->next->next->next->next);
+  
+}
+
+TEST(EmptyList,NormalTest)
+{
+  linked_list *pHead = (linked_list* )malloc(sizeof(linked_list));
+  
+  pHead->next = (linked_list* )malloc(sizeof(linked_list));  
+  pHead->next->next = (linked_list* )malloc(sizeof(linked_list));
+  pHead->next->next->next = (linked_list* )malloc(sizeof(linked_list));
+  pHead->next->next->next->next = NULL;
+  
+
+  pHead->next->data = (char*)"layer 1";
+  pHead->next->next->data = (char*)"layer 2";
+  pHead->next->next->next->data = (char*)"layer 3";
+
+  pHead->next->index = 1;
+  pHead->next->next->index = 2;
+  pHead->next->next->next->index = 3;
+  
+
+  empty_list(pHead->next->next->next);
+  ASSERT_EQ(NULL, pHead->next->next->next->next);
+
+  empty_list(pHead->next->next);
+  ASSERT_EQ(NULL, pHead->next->next->next);
+
+  empty_list(pHead->next);
+  ASSERT_EQ(NULL, pHead->next->next);
+  
+  empty_list(pHead);
+  ASSERT_EQ(NULL, pHead->next);
+}
+TEST(Swap,NormalTest){
+	linked_list *pHead = (linked_list* )malloc(sizeof(linked_list));
+  
+	pHead->next = (linked_list* )malloc(sizeof(linked_list));  
+	pHead->next->next = (linked_list* )malloc(sizeof(linked_list));
+	pHead->next->next->next = (linked_list* )malloc(sizeof(linked_list));
+	pHead->next->next->next->next = NULL;
+	
+	pHead->next->data = (char*)"layer 1";
+	pHead->next->next->data = (char*)"layer 2";
+	pHead->next->next->next->data = (char*)"layer 3";
+
+	pHead->next->index = 1;
+	pHead->next->next->index = 2;
+	pHead->next->next->next->index = 3;
+	
+	swap_list(pHead->next,pHead->next->next);
+	ASSERT_EQ((char*)"layer 2",pHead->next->data);
+	ASSERT_EQ((char*)"layer 1",pHead->next->next->data);
+}
 
 
 
